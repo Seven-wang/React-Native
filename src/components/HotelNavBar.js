@@ -14,11 +14,11 @@ class HotelNavBar extends View {
 
   static propTypes = {
     dataSource: PropTypes.array.isRequired,
-  }
+  };
 
   static defaultProps = {
     ...View.defaultProps,
-  }
+  };
 
   itemClickHandle(item, index){
     this.props.scrollToHotelListView(index);
@@ -33,12 +33,13 @@ class HotelNavBar extends View {
         {dataSource.map(function(item, index){
           return (
             <TouchableOpacity
-                style={[styles.item, {backgroundColor: item.backgroundColor}]}
-                onPress={itemClickHandle.bind(self, item, index)}>
+              key={index}
+              style={[styles.item, {backgroundColor: item.backgroundColor}]}
+              onPress={itemClickHandle.bind(self, item, index)}>
               <View>
-                {item.text.map(function(text){
+                {item.text.map(function(text, key){
                   return (
-                    <Text style={styles.itemText}>{text}</Text>
+                    <Text key={key} style={styles.itemText}>{text}</Text>
                   );
                 })}
               </View>
